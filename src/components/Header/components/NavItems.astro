@@ -1,0 +1,11 @@
+---
+interface Props {
+    navClass?: string,
+    href: string,
+    navName: string
+}
+
+const {href, navName, navClass} = Astro.props
+---
+
+<a href={`#${href}`} class={`${navClass} text-[#152020] hover:text-amber-100 transition`}>{navName}</a>
