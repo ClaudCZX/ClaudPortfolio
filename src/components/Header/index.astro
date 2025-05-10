@@ -1,0 +1,49 @@
+---
+import NavItems from "./components/NavItems.astro";
+import menuBtn from "../../assets/menu-btn.svg";
+
+const navItems = [
+    {href: 'home', navName:'Home'},
+    {href: 'experience', navName:'Experience'},
+    {href: 'emplyment', navName:'Employment'},
+    {href: 'projects', navName:'Works'},
+    {href: 'contact', navName:'Contact'},
+]
+---
+
+<header class="fixed w-full bg-[#EADFED] shadow-sm z-50">
+    <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+        <a class="text-2xl font-bold text-[#152020]">ClaudDev</a>
+        <div class="hidden md:flex items-center space-x-8">
+            {navItems.map((navItem) => (
+                <NavItems href={navItem.href} navName={navItem.navName} />
+                
+            ))}
+        </div>
+
+        <div class="md:hidden flex items-center focus:outline">
+            <button id="mobile-nav-btn" class="cursor-pointer">
+                <img src={menuBtn.src} alt="menu-btn">
+            </button>
+        </div>
+
+    </nav>
+    <div id="mobile-nav" class="hidden md:hidden bg-[#EADFED] shadow-lg">
+        {navItems.map((navItem)=>(
+            <NavItems href={navItem.href} navName={navItem.navName} navClass="block px-3 py-2 text-base font medium" />
+        ))}
+    </div>
+</header>
+
+<script is:inline>
+    window.addEventListener('DOMContentLoaded', () => {
+        const btn = document.getElementById('mobile-nav-btn');
+        const menu = document.getElementById('mobile-nav');
+
+        if (btn && menu) {
+            btn.addEventListener('click',()=>{
+                menu.classList.toggle('hidden')
+            })
+        }
+    })
+</script>
